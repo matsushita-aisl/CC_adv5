@@ -13,9 +13,11 @@ public enum Constellation{
 	Sagittarius("射手座", MonthDay.of(11, 23), MonthDay.of(12, 21)),
 	Capricorn("山羊座", MonthDay.of(12, 22), MonthDay.of(1, 19)){	//基礎コースの抽象クラスの応用でこいつだけメソッドを書き換え
 		boolean check(int year, int month, int day){
+			LocalDate birth = LocalDate.of(year, month, day);
+			if(month == 12)	year++;	//12月と1月で始まりと終わりを場合分けしなければならない
 			LocalDate start = LocalDate.of(year - 1, this.getStart().getMonth(), this.getStart().getDayOfMonth());
 			LocalDate end = LocalDate.of(year, this.getEnd().getMonth(), this.getEnd().getDayOfMonth());
-			LocalDate birth = LocalDate.of(year, month, day);
+			
 			return start.compareTo(birth) <= 0 && end.compareTo(birth) >= 0;
 		}
 	},

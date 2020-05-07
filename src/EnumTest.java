@@ -1,6 +1,8 @@
 import java.util.Calendar;
 import java.util.Scanner;
 
+
+
 public class EnumTest {
 	public static final int MONTH_MIN = 1, MONTH_MAX = 12;		//月の範囲
 	
@@ -20,6 +22,8 @@ public class EnumTest {
 		InputMonth();
 		setDayMax();
 		InputDay();
+		
+		Constellation.getType(year, month, day).getName();
 		
 		//結果表示
 		System.out.println(year + "年" + month + "月" + day + "日"
@@ -88,7 +92,8 @@ public class EnumTest {
 	//誕生月の最終日を設定
 	static void setDayMax(){
 		Calendar c = Calendar.getInstance();
-		c.set(year, month, 1);	//翌月初め
+		c.set(year, month - 1, 1);
+		c.add(Calendar.MONTH, 1);	//翌月初め
 		c.add(Calendar.DATE, -1);	//その前日=当月末日
 		DAY_MAX = c.get(Calendar.DATE);
 	}
