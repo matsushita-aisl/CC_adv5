@@ -1,7 +1,5 @@
 import java.util.Calendar;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class EnumTest {
 	public static final int MONTH_MIN = 1, MONTH_MAX = 12;		//月の範囲
@@ -12,8 +10,6 @@ public class EnumTest {
 	static Scanner scanner = new Scanner(System.in);	//キーボード入力受付用
 	static String str;	//キーボード入力文字列格納
 	static String regex = "^[0-9]*$";	//正の半角数字列の正規表現
-	static Pattern p = Pattern.compile(regex);
-	static Matcher m;
 	static int year, month, day;	//年月
 	
 	public static void main(String[] args){
@@ -37,8 +33,7 @@ public class EnumTest {
 		while(true){
 			System.out.print("誕生年(半角数字)を入力して下さい > ");
 			str = scanner.next();
-			m = p.matcher(str);
-			if(!m.find()){
+			if(!str.matches(regex)){
 				System.out.println("[Error]自然数	を入力して下さい");
 				continue;
 			}
@@ -53,8 +48,7 @@ public class EnumTest {
 		while(true){
 			System.out.print("誕生月(半角数字)を入力して下さい > ");
 			str = scanner.next();
-			m = p.matcher(str);
-			if(!m.find()){
+			if(!str.matches(regex)){
 				System.out.println("[Error]正の整数を入力して下さい");
 				continue;
 			}
@@ -75,8 +69,7 @@ public class EnumTest {
 		while(true){
 			System.out.print("誕生日(半角数字)を入力して下さい > ");
 			str = scanner.next();
-			m = p.matcher(str);
-			if(!m.find()){
+			if(!str.matches(regex)){
 				System.out.println("[Error]正の整数を入力して下さい");
 				continue;
 			}
