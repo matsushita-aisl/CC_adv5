@@ -1,7 +1,10 @@
 import java.time.LocalDate;
 import java.time.MonthDay;
 
+
+
 public enum Constellation{
+	
 	Aries("牡羊座", MonthDay.of(3, 21), MonthDay.of(4, 19)),
 	Taurus("牡牛座", MonthDay.of(4, 20), MonthDay.of(5, 20)),
 	Gemini("双子座", MonthDay.of(5, 21), MonthDay.of(6, 21)),
@@ -27,12 +30,14 @@ public enum Constellation{
 	private final String name;
 	private final MonthDay start, end;
 	
+	
 	private Constellation(String name, MonthDay start, MonthDay end){
 		this.name = name;
 		this.start = start;
 		this.end = end;
 	}
 	
+	//入力された生年月日がthisの範囲にあるか判定
 	boolean check(int year, int month, int day){
 		LocalDate start = LocalDate.of(year, this.getStart().getMonth(), this.getStart().getDayOfMonth());
 		LocalDate end = LocalDate.of(year, this.getEnd().getMonth(), this.getEnd().getDayOfMonth());
@@ -40,6 +45,7 @@ public enum Constellation{
 		return start.compareTo(birth) <= 0 && end.compareTo(birth) >= 0;
 	}
 	
+	//生年月日を基にその星座を返す
 	public static Constellation getType(int year, int month, int day){
 		for(Constellation cons: values()){
 			if(cons.check(year, month, day)) return cons;
@@ -47,14 +53,13 @@ public enum Constellation{
 		return null;
 	}
 	
+	//getter functions
 	public String getName(){
 		return this.name;
 	}
-	
 	public MonthDay getStart(){
 		return this.start;
 	}
-	
 	public MonthDay getEnd(){
 		return this.end;
 	}
